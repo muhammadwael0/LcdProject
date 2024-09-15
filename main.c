@@ -1,6 +1,5 @@
-
 #include <stdint.h>
-#include <stm32f103x6.h>
+#include "stm32f103x6.h"
 #include "Stm32_F103C6_GPIO.h"
 #include "lcd.h"
 
@@ -25,6 +24,21 @@ int main(void)
 	while(1)
 	{
 		// implementation
+        lcd_set_position(0,0);
+        lcd_send_string("Muhammad Wael");
+        wait_ms(250);
+        lcd_clear();
+        lcd_set_position(0,0);
+        lcd_send_string("[*] IEEE [*]");
+        wait_ms(250);
+        lcd_clear();
+        lcd_set_position(0,0);
+        lcd_send_string("Embedded");
+        wait_ms(20);
+        lcd_set_position(1,0);
+        lcd_send_string("Systems");
+        wait_ms(250);
+        lcd_clear();
 	}
 
 }
