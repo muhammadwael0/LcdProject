@@ -22,21 +22,24 @@ void Default_Handler(void)
 void Reset_Handler(void)
 {
     uint32_t size = (uint32_t) &_edata - (uint32_t)&_sdata;
-    uint8_t *source = (uint8_t *)&_etext;
-    uint8_t *des = (uint8_t *)&_sdata;
+    uint8_t *src = (uint8_t *)&_etext;
+    uint8_t *dest = (uint8_t *)&_sdata;
 
     //copy .data section
     for(uint32_t i = 0; i < size; i++)
     {
-        *(des + i) = *(source + i);
+        *dest = *src;
+        dest++;
+        src++;
     }
 
     //init .bss with zero
     size = (uint32_t)&_ebss - (uint32_t)&_sbss;
-    des = (uint8_t *)&_sbss;
-    for(uint32_t i = 0; i < size;i++)
+    dest = (uint8_t *)&_sbss;
+    for(uint32_t i = 0; i < size; i++)
     {
-        *(des + i) = 0U;
+        *dest = 0U;
+        dest++;
     }
 
     //call main
